@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fráze · Čínština s Čendou</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <main>
+      <div class="top-bar">
+        <span class="brand-mark">Čínština s Čendou</span>
+        <button id="themeButton">Tmavý režim</button>
+      </div>
+
+      <nav class="site-nav">
+        <a href="index.html">Úvod</a>
+        <a href="fraze.html">Fráze</a>
+        <a href="slova.html">Slova</a>
+        <a href="pinyin.html">Základy</a>
+        <a href="mysleni.html">Moudrost</a>
+        <a href="iching.html">Kniha proměn</a>
+        <a href="cenda.html">Čenda</a>
+      </nav>
+
+      <section id="texts">
+        <h1>Dnešní čínština</h1>
+        <p class="hint" data-i18n="firstLessonHint">Krátká fráze s hanzi, pinyinem, českým překladem a poslechem.</p>
+
+        <article class="lesson-card">
+          <h3>早上的小计划</h3>
+
+          <div class="chinese-text" id="lessonText">
+            <div class="lesson-sentence" data-text="今天早上，" data-translation="Dnes ráno,">
+              <p class="pinyin-line">Jīntiān zǎoshang,</p>
+              <p class="chinese-line">今天早上，</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="我想慢慢地开始学习。" data-translation="chci v klidu začít studovat.">
+              <p class="pinyin-line">wǒ xiǎng mànmàn de kāishǐ xuéxí.</p>
+              <p class="chinese-line">我想慢慢地开始学习。</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="先听一小段中文，" data-translation="Nejdřív si poslechnout krátký úryvek v čínštině,">
+              <p class="pinyin-line">Xiān tīng yì xiǎo duàn Zhōngwén,</p>
+              <p class="chinese-line">先听一小段中文，</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="然后读一遍，" data-translation="potom si ho jednou přečíst,">
+              <p class="pinyin-line">ránhòu dú yí biàn,</p>
+              <p class="chinese-line">然后读一遍，</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="最后写下一个新的句子。" data-translation="a nakonec si zapsat jednu novou větu.">
+              <p class="pinyin-line">zuìhòu xiě xià yí ge xīn de jùzi.</p>
+              <p class="chinese-line">最后写下一个新的句子。</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="我不需要一下子" data-translation="Nemusím hned">
+              <p class="pinyin-line">Wǒ bù xūyào yíxiàzi</p>
+              <p class="chinese-line">我不需要一下子</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="学会很多东西。" data-translation="se naučit strašně moc věcí.">
+              <p class="pinyin-line">xuéhuì hěn duō dōngxi.</p>
+              <p class="chinese-line">学会很多东西。</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="每天进步一点点，" data-translation="Každý den se posunout jen o kousek,">
+              <p class="pinyin-line">Měitiān jìnbù yìdiǎndiǎn,</p>
+              <p class="chinese-line">每天进步一点点，</p>
+            </div>
+
+            <div class="lesson-sentence" data-text="就已经很好了。" data-translation="to je už dobré.">
+              <p class="pinyin-line">jiù yǐjīng hěn hǎo le.</p>
+              <p class="chinese-line">就已经很好了。</p>
+            </div>
+          </div>
+
+          <div class="lesson-player">
+            <button id="previousSentenceButton" title="Zpět na úryvek" data-i18n-title="previousTitle">↶</button>
+            <button class="play-button" id="playLessonButton" title="Poslech / pauza" data-i18n-title="playTitle">▶</button>
+            <button id="repeatFragmentButton" title="Opakovat aktuální úryvek" data-i18n-title="repeatTitle">Opakování vyp.</button>
+            <button id="stopLessonButton" title="Stop" data-i18n-title="stopTitle">■</button>
+            <button id="nextSentenceButton" title="Další úryvek" data-i18n-title="nextTitle">↷</button>
+            <label>
+              <span data-i18n="speedLabel">Rychlost</span>
+              <select id="speedSelect">
+                <option value="0.43" data-i18n="speedExtraSlow">Pomaleji</option>
+                <option value="0.65" data-i18n="speedSlow">pomalu</option>
+                <option value="0.85" selected data-i18n="speedNormal">normálně</option>
+                <option value="1.05" data-i18n="speedFast">rychle</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="lesson-tools">
+            <label>
+              <span data-i18n="explanationLanguageLabel">Jazyk vysvětlení</span>
+              <select id="explanationLanguageSelect">
+                <option value="cs" selected>Čeština</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <button id="togglePinyinButton">Zobrazit pinyin</button>
+            <button id="toggleTranslationButton">Zobrazit překlad</button>
+            <button id="toggleBreakdownButton">Zobrazit rozbor</button>
+          </div>
+
+          <p class="current-translation" id="currentTranslation"></p>
+
+          <div class="lesson-detail hidden" id="breakdownBlock">
+            <h4 data-i18n="breakdownTitle">Rozbor aktuálního úryvku</h4>
+            <div id="breakdownContent"></div>
+          </div>
+
+          <div class="lesson-detail hidden" id="translationBlock">
+            <h4 data-i18n="translationTitle">Překlad</h4>
+            <p data-i18n="lessonFullTranslation">
+              Dnes ráno chci v klidu začít studovat. Nejdřív si poslechnout krátký úryvek
+              v čínštině, potom si ho jednou přečíst a nakonec si zapsat jednu novou větu.
+              Nemusím se hned naučit strašně moc věcí. Když se každý den posunu jen o kousek,
+              je to už dobré.
+            </p>
+          </div>
+
+          <p id="lessonMessage"></p>
+        </article>
+      </section>
+
+      <footer data-i18n="footerText">
+        Čínština od základů — pinyin, znaky, slova a věty.
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,537 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slova · Čínština s Čendou</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <main>
+      <div class="top-bar">
+        <span class="brand-mark">Čínština s Čendou</span>
+        <button id="themeButton">Tmavý režim</button>
+      </div>
+
+      <nav class="site-nav">
+        <a href="index.html">Úvod</a>
+        <a href="fraze.html">Fráze</a>
+        <a href="slova.html">Slova</a>
+        <a href="pinyin.html">Základy</a>
+        <a href="mysleni.html">Moudrost</a>
+        <a href="iching.html">Kniha proměn</a>
+        <a href="cenda.html">Čenda</a>
+      </nav>
+
+      <section>
+        <h1>Nejčastější čínská slova</h1>
+        <p class="lead-text">Slova jsou řazená postupně podle frekvence — od těch, která v živé čínštině potkáte nejčastěji.</p>
+        <p>Tento oddíl je frekvenční slovník pro začátečníky i mírně pokročilé. Slova nejsou řazená podle témat, ale podle toho, jak často se objevují v běžné řeči, videích, dialozích a titulcích.</p>
+        <p>Začínáme od nejčastějších slov a postupně půjdeme dál: 1–100, 101–200, 201–300…</p>
+      </section>
+
+      <section>
+        <h2>1–100 nejčastějších slov</h2>
+        <div class="dictionary-search">
+          <h3>Hledat ve slovníku</h3>
+          <p class="hint">Hledá se v aktuálně dostupných slovech.</p>
+          <input id="wordSearchInput" type="search" placeholder="Hledat znak, pinyin, český nebo anglický překlad">
+          <p id="wordSearchStatus" class="hint">Zobrazeno 10 z 10 slov</p>
+        </div>
+        <div class="frequency-list">
+          <details class="word-entry" data-search="1 我 wǒ wo já ja i me">
+            <summary class="word-summary">
+              <span class="word-rank">1.</span>
+              <span class="word-hanzi">我</span>
+              <span class="word-pinyin">wǒ</span>
+              <span class="word-cz">já</span>
+              <span class="word-en">I / me</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="我">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我是学生。</p>
+                <p class="example-pinyin">Wǒ shì xuéshēng.</p>
+                <p>Jsem student. / I am a student.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>是 = být / to be</span>
+                  <span>学生 = student / student</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">我在家。</p>
+                <p class="example-pinyin">Wǒ zài jiā.</p>
+                <p>Jsem doma. / I am at home.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>在 = být v / to be at</span>
+                  <span>家 = domov / home</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">我有水。</p>
+                <p class="example-pinyin">Wǒ yǒu shuǐ.</p>
+                <p>Mám vodu. / I have water.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>有 = mít / to have</span>
+                  <span>水 = voda / water</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="2 你 nǐ ni ty you">
+            <summary class="word-summary">
+              <span class="word-rank">2.</span>
+              <span class="word-hanzi">你</span>
+              <span class="word-pinyin">nǐ</span>
+              <span class="word-cz">ty</span>
+              <span class="word-en">you</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="你">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">你有时间吗？</p>
+                <p class="example-pinyin">Nǐ yǒu shíjiān ma?</p>
+                <p>Máš čas? / Do you have time?</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>你 = ty / you</span>
+                  <span>有 = mít / to have</span>
+                  <span>时间 = čas / time</span>
+                  <span>吗 = otázková částice / question particle</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">你在家吗？</p>
+                <p class="example-pinyin">Nǐ zài jiā ma?</p>
+                <p>Jsi doma? / Are you at home?</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>你 = ty / you</span>
+                  <span>在 = být v / to be at</span>
+                  <span>家 = domov / home</span>
+                  <span>吗 = otázková částice / question particle</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">你不是学生。</p>
+                <p class="example-pinyin">Nǐ bú shì xuéshēng.</p>
+                <p>Ty nejsi student. / You are not a student.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>你 = ty / you</span>
+                  <span>不 = ne / not</span>
+                  <span>是 = být / to be</span>
+                  <span>学生 = student / student</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="3 是 shì shi být byt jsem je to be">
+            <summary class="word-summary">
+              <span class="word-rank">3.</span>
+              <span class="word-hanzi">是</span>
+              <span class="word-pinyin">shì</span>
+              <span class="word-cz">být / jsem / je</span>
+              <span class="word-en">to be</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="是">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">这是书。</p>
+                <p class="example-pinyin">Zhè shì shū.</p>
+                <p>To je kniha. / This is a book.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>这 = toto / this</span>
+                  <span>是 = být / to be</span>
+                  <span>书 = kniha / book</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">我是老师。</p>
+                <p class="example-pinyin">Wǒ shì lǎoshī.</p>
+                <p>Jsem učitel. / I am a teacher.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>是 = být / to be</span>
+                  <span>老师 = učitel / teacher</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">他是人。</p>
+                <p class="example-pinyin">Tā shì rén.</p>
+                <p>On je člověk. / He is a person.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>他 = on / he</span>
+                  <span>是 = být / to be</span>
+                  <span>人 = člověk / person</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="4 的 de přivlastňovací privlastnovaci částice castice possessive particle">
+            <summary class="word-summary">
+              <span class="word-rank">4.</span>
+              <span class="word-hanzi">的</span>
+              <span class="word-pinyin">de</span>
+              <span class="word-cz">přivlastňovací částice</span>
+              <span class="word-en">possessive particle</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="的">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我的书。</p>
+                <p class="example-pinyin">Wǒ de shū.</p>
+                <p>Moje kniha. / My book.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>的 = přivlastňovací částice / possessive particle</span>
+                  <span>书 = kniha / book</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">这是我的。</p>
+                <p class="example-pinyin">Zhè shì wǒ de.</p>
+                <p>To je moje. / This is mine.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>这 = toto / this</span>
+                  <span>是 = být / to be</span>
+                  <span>我的 = moje / mine</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">你的水在这里。</p>
+                <p class="example-pinyin">Nǐ de shuǐ zài zhèlǐ.</p>
+                <p>Tvoje voda je tady. / Your water is here.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>你 = ty / you</span>
+                  <span>的 = přivlastňovací částice / possessive particle</span>
+                  <span>水 = voda / water</span>
+                  <span>在 = být v / to be at</span>
+                  <span>这里 = tady / here</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="5 了 le částice castice změny zmeny nebo dokončení dokonceni particle of change completion">
+            <summary class="word-summary">
+              <span class="word-rank">5.</span>
+              <span class="word-hanzi">了</span>
+              <span class="word-pinyin">le</span>
+              <span class="word-cz">částice změny nebo dokončení</span>
+              <span class="word-en">particle of change/completion</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="了">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我有水了。</p>
+                <p class="example-pinyin">Wǒ yǒu shuǐ le.</p>
+                <p>Už mám vodu. / Now I have water.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>有 = mít / to have</span>
+                  <span>水 = voda / water</span>
+                  <span>了 = částice změny / particle of change</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">他来了。</p>
+                <p class="example-pinyin">Tā lái le.</p>
+                <p>Přišel. / He came.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>他 = on / he</span>
+                  <span>来 = přijít / to come</span>
+                  <span>了 = částice dokončení / particle of completion</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">好了。</p>
+                <p class="example-pinyin">Hǎo le.</p>
+                <p>Hotovo. / It is done.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>好 = dobrý, hotový / good, done</span>
+                  <span>了 = částice změny / particle of change</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="6 不 bù bu ne not no">
+            <summary class="word-summary">
+              <span class="word-rank">6.</span>
+              <span class="word-hanzi">不</span>
+              <span class="word-pinyin">bù</span>
+              <span class="word-cz">ne</span>
+              <span class="word-en">not / no</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="不">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我不是学生。</p>
+                <p class="example-pinyin">Wǒ bú shì xuéshēng.</p>
+                <p>Nejsem student. / I am not a student.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>不 = ne / not</span>
+                  <span>是 = být / to be</span>
+                  <span>学生 = student / student</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">他不在家。</p>
+                <p class="example-pinyin">Tā bú zài jiā.</p>
+                <p>Není doma. / He is not at home.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>他 = on / he</span>
+                  <span>不 = ne / not</span>
+                  <span>在 = být v / to be at</span>
+                  <span>家 = domov / home</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">这不是我的书。</p>
+                <p class="example-pinyin">Zhè bú shì wǒ de shū.</p>
+                <p>To není moje kniha. / This is not my book.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>这 = toto / this</span>
+                  <span>不 = ne / not</span>
+                  <span>是 = být / to be</span>
+                  <span>我的 = moje / my</span>
+                  <span>书 = kniha / book</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="7 在 zài zai být byt v nacházet nachazet se na to be at in">
+            <summary class="word-summary">
+              <span class="word-rank">7.</span>
+              <span class="word-hanzi">在</span>
+              <span class="word-pinyin">zài</span>
+              <span class="word-cz">být v / nacházet se / na</span>
+              <span class="word-en">to be at/in</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="在">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我在家。</p>
+                <p class="example-pinyin">Wǒ zài jiā.</p>
+                <p>Jsem doma. / I am at home.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>在 = být v / to be at</span>
+                  <span>家 = domov / home</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">书在这里。</p>
+                <p class="example-pinyin">Shū zài zhèlǐ.</p>
+                <p>Kniha je tady. / The book is here.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>书 = kniha / book</span>
+                  <span>在 = nacházet se / to be at</span>
+                  <span>这里 = tady / here</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">人在里面。</p>
+                <p class="example-pinyin">Rén zài lǐmiàn.</p>
+                <p>Člověk je uvnitř. / The person is inside.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>人 = člověk / person</span>
+                  <span>在 = nacházet se / to be at</span>
+                  <span>里面 = uvnitř / inside</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="8 有 yǒu you mít mit existovat to have there is">
+            <summary class="word-summary">
+              <span class="word-rank">8.</span>
+              <span class="word-hanzi">有</span>
+              <span class="word-pinyin">yǒu</span>
+              <span class="word-cz">mít / existovat</span>
+              <span class="word-en">to have / there is</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="有">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我有书。</p>
+                <p class="example-pinyin">Wǒ yǒu shū.</p>
+                <p>Mám knihu. / I have a book.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>有 = mít / to have</span>
+                  <span>书 = kniha / book</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">这里有水。</p>
+                <p class="example-pinyin">Zhèlǐ yǒu shuǐ.</p>
+                <p>Tady je voda. / There is water here.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>这里 = tady / here</span>
+                  <span>有 = existovat / there is</span>
+                  <span>水 = voda / water</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">你有书吗？</p>
+                <p class="example-pinyin">Nǐ yǒu shū ma?</p>
+                <p>Máš knihu? / Do you have a book?</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>你 = ty / you</span>
+                  <span>有 = mít / to have</span>
+                  <span>书 = kniha / book</span>
+                  <span>吗 = otázková částice / question particle</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="9 人 rén ren člověk clovek lidé lide person people">
+            <summary class="word-summary">
+              <span class="word-rank">9.</span>
+              <span class="word-hanzi">人</span>
+              <span class="word-pinyin">rén</span>
+              <span class="word-cz">člověk / lidé</span>
+              <span class="word-en">person / people</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="人">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">这里有人。</p>
+                <p class="example-pinyin">Zhèlǐ yǒu rén.</p>
+                <p>Tady je člověk. / There is someone here.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>这里 = tady / here</span>
+                  <span>有 = existovat / there is</span>
+                  <span>人 = člověk / person</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">他是中国人。</p>
+                <p class="example-pinyin">Tā shì Zhōngguó rén.</p>
+                <p>On je Číňan. / He is Chinese.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>他 = on / he</span>
+                  <span>是 = být / to be</span>
+                  <span>中国 = Čína / China</span>
+                  <span>人 = člověk / person</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">人很多。</p>
+                <p class="example-pinyin">Rén hěn duō.</p>
+                <p>Je tu hodně lidí. / There are many people.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>人 = lidé / people</span>
+                  <span>很 = velmi, zde přirozená spojka / very, natural linker here</span>
+                  <span>多 = mnoho / many</span>
+                </div>
+              </article>
+            </div>
+          </details>
+
+          <details class="word-entry" data-search="10 和 hé he a s and with">
+            <summary class="word-summary">
+              <span class="word-rank">10.</span>
+              <span class="word-hanzi">和</span>
+              <span class="word-pinyin">hé</span>
+              <span class="word-cz">a / s</span>
+              <span class="word-en">and / with</span>
+            </summary>
+            <div class="word-detail">
+              <button class="stroke-button" type="button" data-character="和">Tahy znaku</button>
+              <article class="word-example">
+                <p class="example-chinese">我和你。</p>
+                <p class="example-pinyin">Wǒ hé nǐ.</p>
+                <p>Já a ty. / You and me.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>和 = a / and</span>
+                  <span>你 = ty / you</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">茶和水。</p>
+                <p class="example-pinyin">Chá hé shuǐ.</p>
+                <p>Čaj a voda. / Tea and water.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>茶 = čaj / tea</span>
+                  <span>和 = a / and</span>
+                  <span>水 = voda / water</span>
+                </div>
+              </article>
+              <article class="word-example">
+                <p class="example-chinese">我和他在这里。</p>
+                <p class="example-pinyin">Wǒ hé tā zài zhèlǐ.</p>
+                <p>Já a on jsme tady. / He and I are here.</p>
+                <div class="sentence-breakdown">
+                  <strong>Rozbor věty</strong>
+                  <span>我 = já / I</span>
+                  <span>和 = a / and</span>
+                  <span>他 = on / he</span>
+                  <span>在 = být v / to be at</span>
+                  <span>这里 = tady / here</span>
+                </div>
+              </article>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="strokeTool" class="stroke-section">
+        <h2>Tahy znaku</h2>
+        <p>Zadejte jeden čínský znak a podívejte se na pořadí tahů.</p>
+        <div class="stroke-controls">
+          <input id="strokeCharacterInput" type="text" maxlength="4" placeholder="Například: 我">
+          <button id="showStrokeButton" type="button">Zobrazit tahy</button>
+        </div>
+        <p id="strokeMessage" class="hint">Animace se zobrazí po zadání znaku.</p>
+        <div id="strokeTarget" class="stroke-target" aria-live="polite"></div>
+      </section>
+
+      <footer data-i18n="footerText">
+        Čínština od základů — pinyin, znaky, slova a věty.
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7.3/dist/hanzi-writer.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
