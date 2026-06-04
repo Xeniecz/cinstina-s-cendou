@@ -25,7 +25,9 @@ const ichingButton = document.getElementById("ichingButton");
 const ichingResult = document.getElementById("ichingResult");
 const wordSearchInput = document.getElementById("wordSearchInput");
 const wordSearchStatus = document.getElementById("wordSearchStatus");
-const wordEntries = document.querySelectorAll(".word-entry");
+const frequencyWordList = document.getElementById("frequencyWordList");
+let wordEntries = document.querySelectorAll(".word-entry");
+const sentenceToggleButtons = document.querySelectorAll(".sentence-toggle-button");
 const strokeCharacterInput = document.getElementById("strokeCharacterInput");
 const showStrokeButton = document.getElementById("showStrokeButton");
 const strokeMessage = document.getElementById("strokeMessage");
@@ -139,16 +141,16 @@ const interfaceTexts = {
     pageTitle: "Čínština s Čendou",
     pageIntro: "Čínština od základů — pinyin, znaky, slova a věty.",
     heroNote: "Učte se čínsky jednoduše, krok za krokem — od pinyinu a znaků až po věty z reálného života.",
-    heroPhraseButton: "Začít frází",
+    heroPhraseButton: "Začít textem",
     heroFollowButton: "Sledovat Čendu",
-    navTexts: "Fráze",
+    navTexts: "Texty",
     navStratagems: "Moudrost",
     navJokes: "Humor",
     navAbout: "Čenda",
     navSocials: "Sítě",
     navDiary: "Deník",
-    firstLessonTitle: "Dnešní čínština",
-    firstLessonHint: "Krátká fráze s hanzi, pinyinem, českým překladem a poslechem.",
+    firstLessonTitle: "Texty k poslechu a opakování",
+    firstLessonHint: "Krátké čínské texty pro poslech, opakování a zapamatování slov v kontextu.",
     lessonFullTranslation: "Dnes ráno chci v klidu začít studovat. Nejdřív si poslechnout krátký úryvek v čínštině, potom si ho jednou přečíst a nakonec si zapsat jednu novou větu. Nemusím se hned naučit strašně moc věcí. Když se každý den posunu jen o kousek, je to už dobré.",
     speedLabel: "Rychlost",
     speedExtraSlow: "Pomaleji",
@@ -215,7 +217,7 @@ const interfaceTexts = {
     aboutTitle: "Kdo je Čenda",
     aboutText: "Čenda Zheng je Číňan žijící v Česku a tvář Taiwan39 Food v Českých Budějovicích. Na webu pomáhá učit čínštinu od základů — pinyin, tóny, znaky, slova a jednoduché věty bez učebnicového stresu.",
     taiwanTitle: "Taiwan39 Food",
-    taiwanText: "Taiwan39 Food je Čendovo zázemí v Českých Budějovicích — místo, kde vznikají některé fráze, videa, situace i nápady pro tento web.",
+    taiwanText: "Taiwan39 Food je Čendovo zázemí v Českých Budějovicích — místo, kde vznikají některé texty, videa, situace i nápady pro tento web.",
     socialTitle: "Sledujte Čendu",
     socialText: "Sledujte Čendu na sociálních sítích a hledejte videa podle hashtagů.",
     hashtagLine: "#cinstinascendou #zhengjianguo #cendavari #taiwan39food",
@@ -358,6 +360,101 @@ const lessonBreakdowns = [
   ]
 ];
 
+const inlineSentenceBreakdowns = {
+  "今天早上，": [
+    "今天早上 = dnes ráno / this morning"
+  ],
+  "我想慢慢地开始学习。": [
+    "我 = já / I",
+    "想 = chtít / want",
+    "慢慢地 = pomalu, v klidu / slowly, calmly",
+    "开始学习 = začít studovat / start studying"
+  ],
+  "每天进步一点点，": [
+    "每天 = každý den / every day",
+    "进步 = dělat pokrok / make progress",
+    "一点点 = maličko / a little bit"
+  ],
+  "就已经很好了。": [
+    "就已经很好了 = to už je velmi dobré / that is already good"
+  ],
+  "今天我想学习四个词：依靠，相比，商量，应用。": [
+    "今天 = dnes / today",
+    "我 = já / I",
+    "想 = chtít / want",
+    "学习 = učit se / to study",
+    "四个词 = čtyři slova / four words",
+    "依靠，相比，商量，应用 = cílová slova textu / target words of the text"
+  ],
+  "人不能一直依靠别人。": [
+    "人 = člověk / person",
+    "不能 = nemůže / cannot",
+    "一直 = pořád, stále / continuously",
+    "依靠 = spoléhat se na / to rely on",
+    "别人 = ostatní lidé / other people"
+  ],
+  "但是我也要依靠自己的努力。": [
+    "我 = já / I",
+    "也 = také / also",
+    "要 = muset, chtít / need to, want to",
+    "依靠 = spoléhat se na / rely on",
+    "自己 = sám/sama / oneself",
+    "的 = spojovací částice / possessive particle",
+    "努力 = úsilí / effort"
+  ],
+  "和昨天相比，今天我进步了一点。": [
+    "和...相比 = ve srovnání s... / compared with...",
+    "昨天 = včera / yesterday",
+    "今天 = dnes / today",
+    "我 = já / I",
+    "进步 = zlepšit se, udělat pokrok / to make progress",
+    "了一点 = trochu se něco změnilo / a little bit"
+  ],
+  "和别人相比，我可能说得不快，": [
+    "和别人相比 = ve srovnání s ostatními / compared with others",
+    "我 = já / I",
+    "可能 = možná / maybe",
+    "说得不快 = nemluvím rychle / do not speak fast",
+    "得 = částice pro popis způsobu děje / particle describing how an action is done"
+  ],
+  "如果我不懂一个问题，我可以和别人商量。": [
+    "如果 = jestliže / if",
+    "我 = já / I",
+    "不懂 = nerozumím / do not understand",
+    "一个问题 = jedna otázka, jeden problém / one question, one problem",
+    "可以 = můžu / can",
+    "和别人 = s někým jiným / with other people",
+    "商量 = poradit se, probrat / discuss, consult"
+  ],
+  "商量不是丢脸。": [
+    "商量 = poradit se / to consult",
+    "不是 = není / is not",
+    "丢脸 = ztratit tvář, ostuda / lose face, shame",
+    "Význam celé věty: Poradit se není ostuda."
+  ],
+  "学习一个词，不只是看它。": [
+    "学习 = učit se / study",
+    "一个词 = jedno slovo / one word",
+    "不只是 = není jen / not only",
+    "看它 = dívat se na něj / look at it"
+  ],
+  "我要应用它。": [
+    "我 = já / I",
+    "要 = muset, chtít / need to, want to",
+    "应用 = použít, aplikovat / apply, use",
+    "它 = ono, to / it"
+  ],
+  "一个词，只有经常应用，才会真的变成自己的词。": [
+    "一个词 = jedno slovo / one word",
+    "只有...才... = teprve když..., tak... / only if..., then...",
+    "经常 = často / often",
+    "应用 = používat, aplikovat / use, apply",
+    "真的 = opravdu / really",
+    "变成 = stát se / become",
+    "自己的词 = vlastní slovo / one’s own word"
+  ]
+};
+
 const czechFragmentTranslations = [
   "Dnes ráno,",
   "chci v klidu začít studovat.",
@@ -430,13 +527,13 @@ const czechLessonBreakdowns = [
     { meaning: "každý den", note: "每 je každý, 天 je den." },
     { meaning: "dělat pokrok", note: "Velmi užitečné slovo pro téma učení." },
     { meaning: "trošičku; po malých krocích", note: "Jemné, podpůrné vyjádření." },
-    { meaning: "každý den se posunout o kousek", note: "Dobrá motivační fráze." }
+    { meaning: "každý den se posunout o kousek", note: "Dobrá motivační věta." }
   ],
   [
     { meaning: "už; právě; tedy", note: "Tady zesiluje pocit 'to už stačí'." },
     { meaning: "už", note: "Ukazuje, že výsledek už nastal." },
     { meaning: "už je to dobré", note: "了 přidává pocit změny stavu." },
-    { meaning: "to už je dobré", note: "Podpůrná fráze: není nutné po sobě chtít příliš mnoho." }
+    { meaning: "to už je dobré", note: "Podpůrná věta: není nutné po sobě chtít příliš mnoho." }
   ]
 ];
 
@@ -878,7 +975,11 @@ function updateThemeButtonText() {
 }
 
 function updateLessonToggleTexts() {
-  if (!lessonCard || !togglePinyinButton || !toggleTranslationButton || !toggleBreakdownButton || !repeatFragmentButton) {
+  if (repeatFragmentButton) {
+    repeatFragmentButton.textContent = lessonRepeatCurrentFragment ? t("repeatOn") : t("repeatOff");
+  }
+
+  if (!lessonCard || !togglePinyinButton || !toggleTranslationButton || !toggleBreakdownButton || !translationBlock || !breakdownBlock) {
     return;
   }
 
@@ -899,8 +1000,6 @@ function updateLessonToggleTexts() {
   } else {
     toggleBreakdownButton.textContent = t("hideBreakdown");
   }
-
-  repeatFragmentButton.textContent = lessonRepeatCurrentFragment ? t("repeatOn") : t("repeatOff");
 }
 
 function applyInterfaceLanguage() {
@@ -1158,22 +1257,27 @@ function getFragmentTranslation(index) {
 }
 
 function showLessonSentence(index) {
-  if (!currentTranslation) {
-    return;
-  }
-
   clearLessonHighlight();
 
   const sentence = lessonSentences[index];
 
   if (!sentence) {
-    currentTranslation.textContent = "";
+    if (currentTranslation) {
+      currentTranslation.textContent = "";
+    }
     return;
   }
 
+  const textCard = sentence.closest(".text-card");
+  if (textCard) {
+    textCard.open = true;
+  }
+
   sentence.classList.add("is-reading");
-  currentTranslation.textContent = getFragmentTranslation(index);
-  sentence.appendChild(currentTranslation);
+
+  if (currentTranslation) {
+    currentTranslation.textContent = getFragmentTranslation(index);
+  }
 
   if (breakdownBlock && !breakdownBlock.classList.contains("hidden")) {
     sentence.appendChild(breakdownBlock);
@@ -1220,6 +1324,72 @@ function renderBreakdown(index) {
     );
   }).join("");
 }
+
+function updateSentenceToggleButton(button, isActive) {
+  if (!button) {
+    return;
+  }
+
+  const target = button.dataset.toggleTarget;
+  const labels = {
+    pinyin: ["Zobrazit pinyin", "Skrýt pinyin"],
+    translation: ["Zobrazit překlad", "Skrýt překlad"],
+    breakdown: ["Zobrazit rozbor", "Skrýt rozbor"]
+  };
+  const labelPair = labels[target] || ["Zobrazit", "Skrýt"];
+
+  button.textContent = isActive ? labelPair[1] : labelPair[0];
+  button.classList.toggle("active", isActive);
+}
+
+function initializeSentenceStudyBlocks() {
+  lessonSentences.forEach(function(sentence) {
+    if (sentence.dataset.translation && !sentence.querySelector(".sentence-translation")) {
+      const translation = document.createElement("p");
+      translation.className = "sentence-translation";
+      translation.textContent = sentence.dataset.translation;
+      sentence.appendChild(translation);
+    }
+
+    const breakdownItems = inlineSentenceBreakdowns[sentence.dataset.text];
+
+    if (breakdownItems && !sentence.querySelector(".sentence-breakdown-inline")) {
+      const breakdown = document.createElement("div");
+      breakdown.className = "sentence-breakdown-inline";
+
+      const title = document.createElement("strong");
+      title.textContent = "Rozbor";
+      breakdown.appendChild(title);
+
+      const list = document.createElement("ul");
+      breakdownItems.forEach(function(item) {
+        const listItem = document.createElement("li");
+        listItem.textContent = item;
+        list.appendChild(listItem);
+      });
+      breakdown.appendChild(list);
+
+      sentence.appendChild(breakdown);
+    }
+  });
+}
+
+initializeSentenceStudyBlocks();
+
+sentenceToggleButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    const textCard = button.closest(".text-card");
+    const target = button.dataset.toggleTarget;
+
+    if (!textCard || !target) {
+      return;
+    }
+
+    const className = "show-" + target;
+    textCard.classList.toggle(className);
+    updateSentenceToggleButton(button, textCard.classList.contains(className));
+  });
+});
 
 function speakLessonSentence(index, runId) {
   if (runId !== lessonSpeechRunId) {
@@ -1363,7 +1533,9 @@ if (stopLessonButton) {
   lessonSpeechRunId = lessonSpeechRunId + 1;
   window.speechSynthesis.cancel();
   clearLessonHighlight();
-  currentTranslation.textContent = "";
+  if (currentTranslation) {
+    currentTranslation.textContent = "";
+  }
   playLessonButton.textContent = "▶";
   lessonIsPlaying = false;
   lessonIsPaused = false;
@@ -1588,8 +1760,78 @@ function normalizeSearchText(text) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+function getChineseCharacters(value) {
+  return Array.from(String(value)).filter(function(character, index, characters) {
+    return /[\u3400-\u9fff]/u.test(character) && characters.indexOf(character) === index;
+  });
+}
+
+function createStrokeButtons(word) {
+  const characters = getChineseCharacters(word);
+
+  if (!characters.length) {
+    return "";
+  }
+
+  return `
+    <div class="word-strokes">
+      <span>Tahy znaku:</span>
+      ${characters.map(function(character) {
+        return `<button class="stroke-button" type="button" data-character="${escapeHtml(character)}">${escapeHtml(character)}</button>`;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderFrequencyWords() {
+  if (!frequencyWordList || !Array.isArray(window.frequencyWords)) {
+    return;
+  }
+
+  frequencyWordList.innerHTML = window.frequencyWords.map(function(entry) {
+    const searchText = [
+      entry.word,
+      entry.pinyin,
+      entry.pinyinInput,
+      entry.cz,
+      entry.en
+    ].join(" ");
+
+    return `
+      <details class="word-entry" data-search="${escapeHtml(searchText)}">
+        <summary class="word-summary">
+          <span class="word-rank">${entry.rank}.</span>
+          <span class="word-hanzi">${escapeHtml(entry.word)}</span>
+          <span class="word-pinyin">${escapeHtml(entry.pinyin)}</span>
+          <span class="word-cz">${escapeHtml(entry.cz)}</span>
+          <span class="word-en">${escapeHtml(entry.en)}</span>
+          <span class="word-frequency">${entry.frequency}</span>
+        </summary>
+        <div class="word-detail">
+          <div class="word-detail-head">
+            <p><strong>${escapeHtml(entry.word)}</strong> · ${escapeHtml(entry.pinyin)}</p>
+            <p>${escapeHtml(entry.cz)} / ${escapeHtml(entry.en)}</p>
+            <p>${escapeHtml(entry.explanation || "Význam bude doplněn.")}</p>
+          </div>
+          <p class="source-note">SUBTLEX-CH WCount: ${entry.frequency}</p>
+          ${createStrokeButtons(entry.word)}
+        </div>
+      </details>
+    `;
+  }).join("");
+
+  wordEntries = document.querySelectorAll(".word-entry");
+}
+
+renderFrequencyWords();
+
 function updateWordSearch() {
-  if (!wordSearchInput || !wordSearchStatus || !wordEntries.length) {
+  if (!wordSearchInput || !wordSearchStatus) {
+    return;
+  }
+
+  if (!wordEntries.length) {
+    wordSearchStatus.textContent = "Zatím nejsou vložena žádná slova.";
     return;
   }
 

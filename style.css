@@ -245,9 +245,237 @@ textarea {
   padding: 20px;
 }
 
+.lesson-list {
+  display: grid;
+  gap: 14px;
+}
+
+.text-card {
+  background: #fffdf8;
+  overflow: hidden;
+}
+
+.text-card-summary {
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  gap: 8px 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  list-style: none;
+}
+
+.text-card-summary::-webkit-details-marker {
+  display: none;
+}
+
+.text-card-title {
+  color: #7a1d12;
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.text-card-description,
+.text-card-words {
+  color: #6f5b4e;
+  display: block;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.text-card-words {
+  color: #4f3e33;
+  font-weight: bold;
+}
+
+.text-card-action {
+  align-self: center;
+  background: #c83b24;
+  border-radius: 6px;
+  color: white;
+  font-size: 0;
+  font-weight: bold;
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  min-height: 44px;
+  padding: 12px 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.text-card-action::after {
+  content: attr(data-closed-label);
+  font-size: 16px;
+}
+
+.text-card[open] .text-card-action {
+  background: #7a1d12;
+}
+
+.text-card[open] .text-card-action::after {
+  content: attr(data-open-label);
+}
+
+.text-card-body {
+  border-top: 1px solid #ead8c2;
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+}
+
+.sentence-toggle-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sentence-toggle-button {
+  background: #fff6e6;
+  border: 1px solid #ead8c2;
+  color: #7a1d12;
+  font-size: 16px;
+  margin: 0;
+  padding: 10px 12px;
+}
+
+.sentence-toggle-button.active {
+  background: #7a1d12;
+  border-color: #7a1d12;
+  color: white;
+}
+
+.text-panel {
+  background: #fffaf1;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.text-panel summary {
+  color: #7a1d12;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  list-style-position: inside;
+  padding: 13px 14px;
+}
+
+.text-panel[open] summary {
+  background: #fff0d8;
+}
+
+.text-panel .chinese-text,
+.text-panel .pinyin-text,
+.text-panel .lesson-translation,
+.text-panel .excerpt-breakdowns {
+  margin: 0;
+  padding: 14px;
+}
+
+.pinyin-text p {
+  color: #5f6f7f;
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
+.pinyin-text p:first-child {
+  margin-top: 0;
+}
+
+.excerpt-breakdowns {
+  display: grid;
+  gap: 10px;
+}
+
+.excerpt-breakdown {
+  background: white;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.excerpt-breakdown h4 {
+  color: #7a1d12;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.excerpt-breakdown ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.excerpt-breakdown li {
+  background: #fffaf1;
+  border-color: #ead8c2;
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 9px 10px;
+}
+
+.excerpt-breakdown p {
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 10px 0 0;
+}
+
 .lesson-card h3 {
   color: #7a1d12;
   font-size: 24px;
+  margin-top: 0;
+}
+
+.lesson-unit {
+  border-top: 1px solid #ead8c2;
+  margin-top: 22px;
+  padding-top: 22px;
+}
+
+.target-words {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 14px 0 18px;
+}
+
+.target-words span {
+  background: #fff4df;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  color: #4f3e33;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 10px 12px;
+}
+
+.lesson-translation {
+  background: #fffaf1;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  margin-top: 18px;
+  padding: 18px;
+}
+
+.lesson-translation h4 {
+  color: #7a1d12;
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.lesson-translation p {
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 10px 0 0;
+}
+
+.lesson-translation p:first-of-type {
   margin-top: 0;
 }
 
@@ -259,6 +487,10 @@ textarea {
 .lesson-sentence {
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
   padding: 8px 10px;
 }
 
@@ -281,6 +513,7 @@ textarea {
   font-size: 16px;
   line-height: 1.4;
   margin: 0 0 2px;
+  order: 2;
 }
 
 .show-pinyin .pinyin-line {
@@ -289,6 +522,61 @@ textarea {
 
 .chinese-line {
   margin: 0;
+  order: 1;
+}
+
+.sentence-translation {
+  background: #fff4df;
+  border-left: 4px solid #c83b24;
+  border-radius: 6px;
+  color: #4f3e33;
+  display: none;
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 4px 0 0;
+  order: 3;
+  padding: 9px 10px;
+}
+
+.show-translation .sentence-translation {
+  display: block;
+}
+
+.sentence-breakdown-inline {
+  background: #fffaf1;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  display: none;
+  margin-top: 6px;
+  order: 4;
+  padding: 10px;
+}
+
+.show-breakdown .sentence-breakdown-inline {
+  display: block;
+}
+
+.sentence-breakdown-inline strong {
+  color: #7a1d12;
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.sentence-breakdown-inline ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.sentence-breakdown-inline li {
+  background: white;
+  border-color: #ead8c2;
+  font-size: 15px;
+  line-height: 1.35;
+  margin: 0;
+  padding: 8px 9px;
 }
 
 .lesson-player {
@@ -743,6 +1031,31 @@ footer {
   overflow: hidden;
 }
 
+.frequency-list-empty {
+  background: #fffaf1;
+  padding: 18px;
+}
+
+.empty-dictionary-note {
+  background: white;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.empty-dictionary-note h3 {
+  color: #7a1d12;
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.empty-dictionary-note p {
+  color: #6f5b4e;
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+}
+
 .dictionary-search,
 .stroke-section {
   background: #fffaf1;
@@ -763,6 +1076,47 @@ footer {
   width: 100%;
 }
 
+.resource-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-card {
+  background: #fffaf1;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.resource-card h2 {
+  color: #7a1d12;
+  font-size: 21px;
+  margin: 0;
+}
+
+.resource-card p {
+  margin: 0;
+}
+
+.secondary-link {
+  align-self: end;
+  background: #7a1d12;
+  border-radius: 8px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  justify-self: start;
+  padding: 10px 12px;
+  text-decoration: none;
+}
+
+.secondary-link:hover {
+  background: #9f2b1c;
+}
+
 .word-entry {
   background: #fffaf1;
   border-top: 1px solid #ead8c2;
@@ -777,7 +1131,7 @@ footer {
   cursor: pointer;
   display: grid;
   gap: 10px;
-  grid-template-columns: 42px 54px minmax(80px, 0.8fr) minmax(150px, 1.15fr) minmax(130px, 1fr);
+  grid-template-columns: 42px 54px minmax(80px, 0.8fr) minmax(140px, 1.1fr) minmax(130px, 1fr) minmax(74px, 0.55fr);
   list-style: none;
   min-height: 54px;
   padding: 10px 14px;
@@ -817,10 +1171,17 @@ footer {
 }
 
 .word-cz,
-.word-en {
+.word-en,
+.word-frequency {
   color: #4f3e33;
   font-size: 15px;
   line-height: 1.35;
+}
+
+.word-frequency {
+  color: #8a6d56;
+  font-weight: bold;
+  text-align: right;
 }
 
 .word-detail {
@@ -835,11 +1196,65 @@ footer {
   margin: 0;
 }
 
+.source-note {
+  color: #8a6d56;
+  font-size: 14px;
+  margin: 0;
+}
+
+.word-detail-head {
+  background: #fff6e6;
+  border: 1px solid #ead8c2;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.word-detail-head p {
+  margin: 6px 0 0;
+}
+
+.word-detail-head p:first-child {
+  color: #7a1d12;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.word-strokes {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.word-strokes span {
+  color: #8a6d56;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .word-example {
   background: white;
   border: 1px solid #ead8c2;
   border-radius: 8px;
   padding: 12px;
+}
+
+.example-label {
+  color: #8a6d56;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.example-chinese {
+  color: #7a1d12;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.example-pinyin {
+  color: #5f6f7f;
+  font-weight: bold;
 }
 
 .word-example p {
@@ -1486,6 +1901,68 @@ body.dark .lesson-card {
   border-color: #596879;
 }
 
+body.dark .lesson-unit {
+  border-top-color: #596879;
+}
+
+body.dark .text-card,
+body.dark .text-panel,
+body.dark .excerpt-breakdown {
+  background: #2f3a46;
+  border-color: #596879;
+}
+
+body.dark .text-card-body {
+  border-top-color: #596879;
+}
+
+body.dark .text-card-title,
+body.dark .text-panel summary,
+body.dark .excerpt-breakdown h4 {
+  color: #9cc9ff;
+}
+
+body.dark .text-card-description,
+body.dark .text-card-words,
+body.dark .pinyin-text p,
+body.dark .excerpt-breakdown p {
+  color: #c6d3df;
+}
+
+body.dark .text-panel[open] summary,
+body.dark .excerpt-breakdown li {
+  background: #24303b;
+  border-color: #596879;
+}
+
+body.dark .sentence-toggle-button {
+  background: #24303b;
+  border-color: #596879;
+  color: #ffd166;
+}
+
+body.dark .sentence-toggle-button.active {
+  background: #ffd166;
+  border-color: #ffd166;
+  color: #1f2933;
+}
+
+body.dark .sentence-translation,
+body.dark .sentence-breakdown-inline {
+  background: #24303b;
+  border-color: #596879;
+  color: #c6d3df;
+}
+
+body.dark .sentence-breakdown-inline strong {
+  color: #9cc9ff;
+}
+
+body.dark .sentence-breakdown-inline li {
+  background: #2f3a46;
+  border-color: #596879;
+}
+
 body.dark .quiet-section,
 body.dark .info-note,
 body.dark .cenda-letter,
@@ -1531,26 +2008,37 @@ body.dark .word-detail,
 body.dark .word-example,
 body.dark .dictionary-search,
 body.dark .stroke-section,
-body.dark .stroke-target {
+body.dark .stroke-target,
+body.dark .empty-dictionary-note {
   border-color: #596879;
 }
 
 body.dark .word-entry,
 body.dark .dictionary-search,
-body.dark .stroke-section {
+body.dark .stroke-section,
+body.dark .frequency-list-empty {
   background: #2f3a46;
 }
 
 body.dark .word-entry[open] .word-summary,
 body.dark .word-example,
 body.dark .sentence-breakdown,
-body.dark .stroke-target {
+body.dark .stroke-target,
+body.dark .empty-dictionary-note {
   background: #24303b;
 }
 
 body.dark .word-rank,
 body.dark .word-pinyin,
 body.dark .example-pinyin {
+  color: #c6d3df;
+}
+
+body.dark .empty-dictionary-note h3 {
+  color: #9cc9ff;
+}
+
+body.dark .empty-dictionary-note p {
   color: #c6d3df;
 }
 
@@ -1663,6 +2151,17 @@ body.dark .lesson-card h3 {
 
 body.dark .stratagem-card h3,
 body.dark .joke-card h3 {
+  color: #9cc9ff;
+}
+
+body.dark .target-words span,
+body.dark .lesson-translation {
+  background: #24303b;
+  border-color: #596879;
+  color: #c6d3df;
+}
+
+body.dark .lesson-translation h4 {
   color: #9cc9ff;
 }
 
@@ -1882,14 +2381,23 @@ body.dark .oracle-chance-line {
     padding: 0;
   }
 
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
   .word-summary {
     align-items: start;
     grid-template-columns: 34px 44px 1fr;
   }
 
   .word-cz,
-  .word-en {
+  .word-en,
+  .word-frequency {
     grid-column: 3 / -1;
+  }
+
+  .word-frequency {
+    text-align: left;
   }
 
   .word-summary::after {
@@ -1925,8 +2433,31 @@ body.dark .oracle-chance-line {
     padding: 14px;
   }
 
+  .text-card-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .text-card-action {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: stretch;
+  }
+
+  .sentence-toggle-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sentence-toggle-button {
+    width: 100%;
+  }
+
   .lesson-card h3 {
     font-size: 21px;
+  }
+
+  .target-words {
+    grid-template-columns: 1fr;
   }
 
   .chinese-text {
