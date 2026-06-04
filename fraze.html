@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fráze · Čínština s Čendou</title>
+    <title>Texty · Čínština s Čendou</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -16,7 +16,7 @@
 
       <nav class="site-nav">
         <a href="index.html">Úvod</a>
-        <a href="fraze.html">Fráze</a>
+        <a href="fraze.html">Texty</a>
         <a href="slova.html">Slova</a>
         <a href="pinyin.html">Základy</a>
         <a href="mysleni.html">Moudrost</a>
@@ -25,13 +25,28 @@
       </nav>
 
       <section id="texts">
-        <h1>Dnešní čínština</h1>
-        <p class="hint" data-i18n="firstLessonHint">Krátká fráze s hanzi, pinyinem, českým překladem a poslechem.</p>
+        <h1>Texty k poslechu a opakování</h1>
+        <p class="hint" data-i18n="firstLessonHint">Krátké čínské texty pro poslech, opakování a zapamatování slov v kontextu.</p>
 
-        <article class="lesson-card">
-          <h3>早上的小计划</h3>
+        <div class="lesson-list">
+          <details class="lesson-card text-card">
+            <summary class="text-card-summary">
+              <span class="text-card-title">Ranní plán</span>
+              <span class="text-card-description">Krátký text o klidném začátku studia a malém každodenním pokroku.</span>
+              <span class="text-card-words">今天, 早上, 学习, 进步, 一点点</span>
+              <span class="text-card-action" data-open-label="Skrýt text" data-closed-label="Otevřít text">Otevřít text</span>
+            </summary>
 
-          <div class="chinese-text" id="lessonText">
+            <div class="text-card-body">
+              <div class="sentence-toggle-controls">
+                <button class="sentence-toggle-button" data-toggle-target="pinyin">Zobrazit pinyin</button>
+                <button class="sentence-toggle-button" data-toggle-target="translation">Zobrazit překlad</button>
+                <button class="sentence-toggle-button" data-toggle-target="breakdown">Zobrazit rozbor</button>
+              </div>
+
+              <details class="text-panel" open>
+                <summary>Čínský text</summary>
+                <div class="chinese-text" id="lessonText">
             <div class="lesson-sentence" data-text="今天早上，" data-translation="Dnes ráno,">
               <p class="pinyin-line">Jīntiān zǎoshang,</p>
               <p class="chinese-line">今天早上，</p>
@@ -76,9 +91,220 @@
               <p class="pinyin-line">jiù yǐjīng hěn hǎo le.</p>
               <p class="chinese-line">就已经很好了。</p>
             </div>
-          </div>
+                </div>
+              </details>
 
-          <div class="lesson-player">
+            </div>
+          </details>
+
+          <details class="lesson-card text-card">
+            <summary class="text-card-summary">
+              <span class="text-card-title">Čtyři slova: 依靠，相比，商量，应用</span>
+              <span class="text-card-description">Opakovací text pro čtyři užitečná slova v kontextu.</span>
+              <span class="text-card-words">依靠 yīkào, 相比 xiāngbǐ, 商量 shāngliang, 应用 yìngyòng</span>
+              <span class="text-card-action" data-open-label="Skrýt text" data-closed-label="Otevřít text">Otevřít text</span>
+            </summary>
+
+            <div class="text-card-body">
+              <div class="sentence-toggle-controls">
+                <button class="sentence-toggle-button" data-toggle-target="pinyin">Zobrazit pinyin</button>
+                <button class="sentence-toggle-button" data-toggle-target="translation">Zobrazit překlad</button>
+                <button class="sentence-toggle-button" data-toggle-target="breakdown">Zobrazit rozbor</button>
+              </div>
+
+              <div class="target-words">
+                <span>依靠 yīkào — spoléhat se / to rely on</span>
+                <span>相比 xiāngbǐ — ve srovnání / compared with</span>
+                <span>商量 shāngliang — poradit se, probrat / to discuss, to consult</span>
+                <span>应用 yìngyòng — použít, aplikovat / to apply, to use</span>
+              </div>
+
+              <details class="text-panel" open>
+                <summary>Čínský text</summary>
+                <div class="chinese-text">
+              <div class="lesson-sentence" data-text="今天我想学习四个词：依靠，相比，商量，应用。" data-translation="Dnes se chci naučit čtyři slova: spoléhat se, ve srovnání, poradit se, použít.">
+                <p class="pinyin-line">Jīntiān wǒ xiǎng xuéxí sì ge cí: yīkào, xiāngbǐ, shāngliang, yìngyòng.</p>
+                <p class="chinese-line">今天我想学习四个词：依靠，相比，商量，应用。</p>
+              </div>
+              <div class="lesson-sentence" data-text="第一个词是依靠。" data-translation="První slovo je 依靠 — spoléhat se.">
+                <p class="pinyin-line">Dì yī ge cí shì yīkào.</p>
+                <p class="chinese-line">第一个词是依靠。</p>
+              </div>
+              <div class="lesson-sentence" data-text="人不能一直依靠别人。" data-translation="Člověk se nemůže pořád spoléhat na ostatní.">
+                <p class="pinyin-line">Rén bù néng yìzhí yīkào biérén.</p>
+                <p class="chinese-line">人不能一直依靠别人。</p>
+              </div>
+              <div class="lesson-sentence" data-text="小孩子可以依靠父母。" data-translation="Malé dítě se může spoléhat na rodiče.">
+                <p class="pinyin-line">Xiǎo háizi kěyǐ yīkào fùmǔ.</p>
+                <p class="chinese-line">小孩子可以依靠父母。</p>
+              </div>
+              <div class="lesson-sentence" data-text="但是大人不能什么事都依靠父母。" data-translation="Ale dospělý člověk se nemůže ve všem spoléhat na rodiče.">
+                <p class="pinyin-line">Dànshì dàrén bù néng shénme shì dōu yīkào fùmǔ.</p>
+                <p class="chinese-line">但是大人不能什么事都依靠父母。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我可以依靠朋友的帮助，" data-translation="Můžu se spoléhat na pomoc přátel,">
+                <p class="pinyin-line">Wǒ kěyǐ yīkào péngyou de bāngzhù,</p>
+                <p class="chinese-line">我可以依靠朋友的帮助，</p>
+              </div>
+              <div class="lesson-sentence" data-text="但是我也要依靠自己的努力。" data-translation="ale musím se také spoléhat na vlastní úsilí.">
+                <p class="pinyin-line">dànshì wǒ yě yào yīkào zìjǐ de nǔlì.</p>
+                <p class="chinese-line">但是我也要依靠自己的努力。</p>
+              </div>
+              <div class="lesson-sentence" data-text="如果我每天学习一点点，" data-translation="Když se každý den naučím trochu,">
+                <p class="pinyin-line">Rúguǒ wǒ měitiān xuéxí yì diǎndiǎn,</p>
+                <p class="chinese-line">如果我每天学习一点点，</p>
+              </div>
+              <div class="lesson-sentence" data-text="我就可以慢慢依靠自己。" data-translation="můžu se pomalu začít spoléhat sama na sebe.">
+                <p class="pinyin-line">wǒ jiù kěyǐ mànmàn yīkào zìjǐ.</p>
+                <p class="chinese-line">我就可以慢慢依靠自己。</p>
+              </div>
+              <div class="lesson-sentence" data-text="第二个词是相比。" data-translation="Druhé slovo je 相比 — ve srovnání.">
+                <p class="pinyin-line">Dì èr ge cí shì xiāngbǐ.</p>
+                <p class="chinese-line">第二个词是相比。</p>
+              </div>
+              <div class="lesson-sentence" data-text="和昨天相比，今天我进步了一点。" data-translation="Ve srovnání se včerejškem jsem dnes udělala malý pokrok.">
+                <p class="pinyin-line">Hé zuótiān xiāngbǐ, jīntiān wǒ jìnbù le yìdiǎn.</p>
+                <p class="chinese-line">和昨天相比，今天我进步了一点。</p>
+              </div>
+              <div class="lesson-sentence" data-text="和以前相比，我现在更敢说中文。" data-translation="Ve srovnání s dřívějškem se teď víc odvážím mluvit čínsky.">
+                <p class="pinyin-line">Hé yǐqián xiāngbǐ, wǒ xiànzài gèng gǎn shuō Zhōngwén.</p>
+                <p class="chinese-line">和以前相比，我现在更敢说中文。</p>
+              </div>
+              <div class="lesson-sentence" data-text="和别人相比，我可能说得不快，" data-translation="Ve srovnání s jinými možná nemluvím rychle,">
+                <p class="pinyin-line">Hé biérén xiāngbǐ, wǒ kěnéng shuō de bù kuài,</p>
+                <p class="chinese-line">和别人相比，我可能说得不快，</p>
+              </div>
+              <div class="lesson-sentence" data-text="但是和过去的自己相比，我已经好多了。" data-translation="ale ve srovnání se svým minulým já jsem už mnohem dál.">
+                <p class="pinyin-line">dànshì hé guòqù de zìjǐ xiāngbǐ, wǒ yǐjīng hǎo duō le.</p>
+                <p class="chinese-line">但是和过去的自己相比，我已经好多了。</p>
+              </div>
+              <div class="lesson-sentence" data-text="相比之下，每天学习一点点，比一天学很多然后放弃更好。" data-translation="Ve srovnání s tím je lepší učit se každý den trochu než se jeden den učit hodně a potom to vzdát.">
+                <p class="pinyin-line">Xiāngbǐ zhī xià, měitiān xuéxí yì diǎndiǎn, bǐ yì tiān xué hěn duō ránhòu fàngqì gèng hǎo.</p>
+                <p class="chinese-line">相比之下，每天学习一点点，比一天学很多然后放弃更好。</p>
+              </div>
+              <div class="lesson-sentence" data-text="第三个词是商量。" data-translation="Třetí slovo je 商量 — poradit se / probrat.">
+                <p class="pinyin-line">Dì sān ge cí shì shāngliang.</p>
+                <p class="chinese-line">第三个词是商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="如果我不懂一个问题，我可以和别人商量。" data-translation="Když nerozumím nějaké otázce, můžu se s někým poradit.">
+                <p class="pinyin-line">Rúguǒ wǒ bù dǒng yí ge wèntí, wǒ kěyǐ hé biérén shāngliang.</p>
+                <p class="chinese-line">如果我不懂一个问题，我可以和别人商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我可以和朋友商量。" data-translation="Můžu se poradit s kamarádem.">
+                <p class="pinyin-line">Wǒ kěyǐ hé péngyou shāngliang.</p>
+                <p class="chinese-line">我可以和朋友商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我可以和家人商量。" data-translation="Můžu se poradit s rodinou.">
+                <p class="pinyin-line">Wǒ kěyǐ hé jiārén shāngliang.</p>
+                <p class="chinese-line">我可以和家人商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我也可以和AI商量。" data-translation="Můžu se poradit i s AI.">
+                <p class="pinyin-line">Wǒ yě kěyǐ hé AI shāngliang.</p>
+                <p class="chinese-line">我也可以和AI商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="商量不是丢脸。" data-translation="Poradit se není ostuda.">
+                <p class="pinyin-line">Shāngliang bú shì diūliǎn.</p>
+                <p class="chinese-line">商量不是丢脸。</p>
+              </div>
+              <div class="lesson-sentence" data-text="商量是为了找到更好的办法。" data-translation="Poradit se znamená hledat lepší řešení.">
+                <p class="pinyin-line">Shāngliang shì wèile zhǎodào gèng hǎo de bànfǎ.</p>
+                <p class="chinese-line">商量是为了找到更好的办法。</p>
+              </div>
+              <div class="lesson-sentence" data-text="有时候，一个人想不明白，" data-translation="Někdy jeden člověk něco nechápe,">
+                <p class="pinyin-line">Yǒu shíhou, yí ge rén xiǎng bù míngbai,</p>
+                <p class="chinese-line">有时候，一个人想不明白，</p>
+              </div>
+              <div class="lesson-sentence" data-text="两个人商量一下，就明白了。" data-translation="ale dva lidé si o tom promluví a hned je to jasnější.">
+                <p class="pinyin-line">liǎng ge rén shāngliang yíxià, jiù míngbai le.</p>
+                <p class="chinese-line">两个人商量一下，就明白了。</p>
+              </div>
+              <div class="lesson-sentence" data-text="第四个词是应用。" data-translation="Čtvrté slovo je 应用 — použít / aplikovat.">
+                <p class="pinyin-line">Dì sì ge cí shì yìngyòng.</p>
+                <p class="chinese-line">第四个词是应用。</p>
+              </div>
+              <div class="lesson-sentence" data-text="学习一个词，不只是看它。" data-translation="Naučit se slovo neznamená jen se na něj dívat.">
+                <p class="pinyin-line">Xuéxí yí ge cí, bù zhǐ shì kàn tā.</p>
+                <p class="chinese-line">学习一个词，不只是看它。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我要应用它。" data-translation="Musím ho používat.">
+                <p class="pinyin-line">Wǒ yào yìngyòng tā.</p>
+                <p class="chinese-line">我要应用它。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我在句子里应用它。" data-translation="Používám ho ve větě.">
+                <p class="pinyin-line">Wǒ zài jùzi lǐ yìngyòng tā.</p>
+                <p class="chinese-line">我在句子里应用它。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我在生活里应用它。" data-translation="Používám ho v životě.">
+                <p class="pinyin-line">Wǒ zài shēnghuó lǐ yìngyòng tā.</p>
+                <p class="chinese-line">我在生活里应用它。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我今天学习“依靠”，" data-translation="Dnes se učím slovo 依靠,">
+                <p class="pinyin-line">Wǒ jīntiān xuéxí “yīkào”,</p>
+                <p class="chinese-line">我今天学习“依靠”，</p>
+              </div>
+              <div class="lesson-sentence" data-text="就要应用“依靠”这个词。" data-translation="tak ho musím použít.">
+                <p class="pinyin-line">jiù yào yìngyòng “yīkào” zhège cí.</p>
+                <p class="chinese-line">就要应用“依靠”这个词。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我今天学习“相比”，" data-translation="Dnes se učím slovo 相比,">
+                <p class="pinyin-line">Wǒ jīntiān xuéxí “xiāngbǐ”,</p>
+                <p class="chinese-line">我今天学习“相比”，</p>
+              </div>
+              <div class="lesson-sentence" data-text="就要应用“相比”这个词。" data-translation="tak ho musím použít.">
+                <p class="pinyin-line">jiù yào yìngyòng “xiāngbǐ” zhège cí.</p>
+                <p class="chinese-line">就要应用“相比”这个词。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我今天学习“商量”，" data-translation="Dnes se učím slovo 商量,">
+                <p class="pinyin-line">Wǒ jīntiān xuéxí “shāngliang”,</p>
+                <p class="chinese-line">我今天学习“商量”，</p>
+              </div>
+              <div class="lesson-sentence" data-text="就要应用“商量”这个词。" data-translation="tak ho musím použít.">
+                <p class="pinyin-line">jiù yào yìngyòng “shāngliang” zhège cí.</p>
+                <p class="chinese-line">就要应用“商量”这个词。</p>
+              </div>
+              <div class="lesson-sentence" data-text="一个词，只有经常应用，才会真的变成自己的词。" data-translation="Slovo se stane mým slovem teprve tehdy, když ho často používám.">
+                <p class="pinyin-line">Yí ge cí, zhǐyǒu jīngcháng yìngyòng, cái huì zhēn de biàn chéng zìjǐ de cí.</p>
+                <p class="chinese-line">一个词，只有经常应用，才会真的变成自己的词。</p>
+              </div>
+              <div class="lesson-sentence" data-text="所以，今天我不着急。" data-translation="Proto dnes nespěchám.">
+                <p class="pinyin-line">Suǒyǐ, jīntiān wǒ bù zháojí.</p>
+                <p class="chinese-line">所以，今天我不着急。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我只学习四个词。" data-translation="Učím se jen čtyři slova.">
+                <p class="pinyin-line">Wǒ zhǐ xuéxí sì ge cí.</p>
+                <p class="chinese-line">我只学习四个词。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我听一遍，读一遍，再说一遍。" data-translation="Poslechnu si je jednou, přečtu jednou a potom řeknu jednou.">
+                <p class="pinyin-line">Wǒ tīng yí biàn, dú yí biàn, zài shuō yí biàn.</p>
+                <p class="chinese-line">我听一遍，读一遍，再说一遍。</p>
+              </div>
+              <div class="lesson-sentence" data-text="我可以依靠重复。" data-translation="Můžu se spoléhat na opakování.">
+                <p class="pinyin-line">Wǒ kěyǐ yīkào chóngfù.</p>
+                <p class="chinese-line">我可以依靠重复。</p>
+              </div>
+              <div class="lesson-sentence" data-text="和昨天相比，我会更熟悉一点。" data-translation="Ve srovnání se včerejškem mi to bude o trochu známější.">
+                <p class="pinyin-line">Hé zuótiān xiāngbǐ, wǒ huì gèng shúxī yìdiǎn.</p>
+                <p class="chinese-line">和昨天相比，我会更熟悉一点。</p>
+              </div>
+              <div class="lesson-sentence" data-text="如果不懂，我可以商量。" data-translation="Když něčemu nerozumím, můžu se poradit.">
+                <p class="pinyin-line">Rúguǒ bù dǒng, wǒ kěyǐ shāngliang.</p>
+                <p class="chinese-line">如果不懂，我可以商量。</p>
+              </div>
+              <div class="lesson-sentence" data-text="学会以后，我要马上应用。" data-translation="Až se to naučím, musím to hned použít.">
+                <p class="pinyin-line">Xuéhuì yǐhòu, wǒ yào mǎshàng yìngyòng.</p>
+                <p class="chinese-line">学会以后，我要马上应用。</p>
+              </div>
+              <div class="lesson-sentence" data-text="这就是今天的小计划。" data-translation="To je můj malý plán na dnešek.">
+                <p class="pinyin-line">Zhè jiù shì jīntiān de xiǎo jìhuà.</p>
+                <p class="chinese-line">这就是今天的小计划。</p>
+              </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+
+          <div class="lesson-player text-list-player">
             <button id="previousSentenceButton" title="Zpět na úryvek" data-i18n-title="previousTitle">↶</button>
             <button class="play-button" id="playLessonButton" title="Poslech / pauza" data-i18n-title="playTitle">▶</button>
             <button id="repeatFragmentButton" title="Opakovat aktuální úryvek" data-i18n-title="repeatTitle">Opakování vyp.</button>
@@ -95,38 +321,8 @@
             </label>
           </div>
 
-          <div class="lesson-tools">
-            <label>
-              <span data-i18n="explanationLanguageLabel">Jazyk vysvětlení</span>
-              <select id="explanationLanguageSelect">
-                <option value="cs" selected>Čeština</option>
-                <option value="en">English</option>
-              </select>
-            </label>
-            <button id="togglePinyinButton">Zobrazit pinyin</button>
-            <button id="toggleTranslationButton">Zobrazit překlad</button>
-            <button id="toggleBreakdownButton">Zobrazit rozbor</button>
-          </div>
-
-          <p class="current-translation" id="currentTranslation"></p>
-
-          <div class="lesson-detail hidden" id="breakdownBlock">
-            <h4 data-i18n="breakdownTitle">Rozbor aktuálního úryvku</h4>
-            <div id="breakdownContent"></div>
-          </div>
-
-          <div class="lesson-detail hidden" id="translationBlock">
-            <h4 data-i18n="translationTitle">Překlad</h4>
-            <p data-i18n="lessonFullTranslation">
-              Dnes ráno chci v klidu začít studovat. Nejdřív si poslechnout krátký úryvek
-              v čínštině, potom si ho jednou přečíst a nakonec si zapsat jednu novou větu.
-              Nemusím se hned naučit strašně moc věcí. Když se každý den posunu jen o kousek,
-              je to už dobré.
-            </p>
-          </div>
-
           <p id="lessonMessage"></p>
-        </article>
+        </div>
       </section>
 
       <footer data-i18n="footerText">
