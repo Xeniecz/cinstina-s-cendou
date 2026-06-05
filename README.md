@@ -25,6 +25,9 @@ Veřejný mini web pro Čendu Zheng: čínština od základů — pinyin, znaky,
 - Do oddílu `Texty` byl přidán nový opakovací text `Čtyři slova: 依靠，相比，商量，应用` se slovníčkem, pinyinem, českým překladem a větami použitelnými pro poslech.
 - Stránka `Texty` byla přepracována na rozbalovací karty: dlouhé texty nejsou při načtení automaticky otevřené a návštěvník nejdřív vidí jen přehled textů.
 - Nový text `Čtyři slova: 依靠，相比，商量，应用` má přidaný rozbor hlavních úryvků, aby bylo lépe vidět použití cílových slov v kontextu.
+- Do oddílu `Texty` byl přidán další nový opakovací text `Pět slov: 汇报，意外，只不过，无疑，皆` s rozborem každé věty, který vysvětluje cílová slova a gramatiku v kontextu.
+- V textu `Pět slov: 汇报，意外，只不过，无疑，皆` byly opraveny české překlady — odstraněny čínské znaky z překladů a zajištěno, že každý český překlad je přirozená česká věta bez čínských znaků.
+- Rozbory v textu `Pět slov: 汇报，意外，只不过，无疑，皆` byly přepracované na konkrétní slovní rozbor po slovech a smysluplných částech vět.
 - Stránka `Texty` byla upravena tak, aby pinyin, český překlad a rozbor byly přímo pod jednotlivými větami.
 - Dlouhé samostatné bloky pinyinu a překladu byly nahrazené větnými učebními bloky s přepínači `Zobrazit pinyin`, `Zobrazit překlad` a `Zobrazit rozbor`.
 - `Humor` už není samostatný veřejný oddíl v horní navigaci ani na úvodní stránce. Soubor `humor.html` zatím zůstává v projektu jako nepoužívaný obsah pro případné pozdější využití.
