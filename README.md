@@ -62,6 +62,7 @@ Veřejný mini web pro Čendu Zheng: čínština od základů — pinyin, znaky,
 - Společný `script.js` je upravený tak, aby fungoval i na stránkách, kde není každý obsahový blok.
 - Mobilní verze je upravená pro návštěvy z TikToku, Instagramu, YouTube a QR kódů: stránky mají viewport meta tag, kompaktnější navigaci, pohodlnější dotykové prvky, lepší skládání hero sekce, karet, audio tlačítek, sociálních odkazů a formuláře Knihy proměn.
 - Hero sekce na úvodní stránce má méně dominantní tlačítko `Tmavý režim` a skutečnou fotku Čendy / Taiwan39 Food ve vyváženém obrazovém slotu.
+- Stránka `Čenda` byla převedena z dvousloupcového layoutu na vertikální profilové rozložení: sekce `Kdo je Čenda` a `Taiwan39 Food` jsou nyní pod sebou v jedné kartě místo vedle sebe, což zlepšuje čitelnost a eliminuje prázdné místo. Na desktopu je text vedle fotografie Čendy, na mobilu je fotka pod textem.
 
 ## Upravené soubory
 

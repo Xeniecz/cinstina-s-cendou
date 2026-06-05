@@ -28,6 +28,22 @@ section {
   margin-bottom: 22px;
 }
 
+.profile-section {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ead8c2;
+  box-shadow: 0 14px 36px rgba(70, 38, 18, 0.08);
+  padding: 30px;
+  margin-bottom: 22px;
+}
+
+.profile-section article {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
 .top-bar {
   align-items: center;
   display: flex;
@@ -1726,20 +1742,25 @@ footer {
 }
 
 .profile-intro {
-  align-items: start;
-  display: grid;
-  gap: 18px;
-  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.42fr);
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
-.profile-intro p {
+.profile-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-text p {
   margin-top: 0;
 }
 
 .profile-photo-placeholder {
   aspect-ratio: 4 / 5;
   box-shadow: 0 14px 28px rgba(70, 38, 18, 0.12);
-  justify-self: end;
+  flex-shrink: 0;
   max-width: 210px;
   width: 100%;
 }
@@ -2338,7 +2359,6 @@ body.dark .oracle-chance-line {
   .public-info-grid,
   .section-cards,
   .hero-content,
-  .profile-intro,
   .radical-explainer-grid,
   .character-examples,
   .word-building-grid,
@@ -2346,6 +2366,10 @@ body.dark .oracle-chance-line {
   .syllable-parts,
   .oracle-layout {
     grid-template-columns: 1fr;
+  }
+
+  .profile-intro {
+    flex-direction: column;
   }
 
   .hero-section {
