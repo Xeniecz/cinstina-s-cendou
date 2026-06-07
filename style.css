@@ -633,6 +633,92 @@ textarea {
   padding: 8px;
 }
 
+body.has-floating-lesson-player {
+  padding-bottom: 150px;
+}
+
+.floating-lesson-player {
+  align-items: center;
+  background: rgba(255, 250, 241, 0.97);
+  border: 1px solid #e2c8a8;
+  border-radius: 8px;
+  bottom: 16px;
+  box-shadow: 0 16px 34px rgba(70, 38, 18, 0.18);
+  display: none;
+  gap: 12px;
+  left: 50%;
+  max-width: 960px;
+  padding: 10px;
+  position: fixed;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  z-index: 50;
+}
+
+.floating-lesson-player.is-visible {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto;
+}
+
+.floating-lesson-info {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.floating-lesson-info strong {
+  color: #7a1d12;
+  font-size: 16px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.floating-lesson-info span {
+  color: #6f5b4e;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.floating-lesson-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+}
+
+.floating-lesson-controls button {
+  font-size: 15px;
+  margin: 0;
+  min-height: 40px;
+  padding: 9px 12px;
+}
+
+.floating-lesson-controls .play-button {
+  font-size: 20px;
+  min-width: 48px;
+}
+
+.floating-lesson-controls label {
+  align-items: center;
+  color: #5f4b3d;
+  display: flex;
+  font-size: 14px;
+  gap: 6px;
+}
+
+.floating-lesson-controls select {
+  background: white;
+  border: 1px solid #e2c8a8;
+  border-radius: 6px;
+  color: #1f1712;
+  font-size: 15px;
+  min-height: 40px;
+  padding: 7px 8px;
+}
+
 .lesson-tools {
   align-items: center;
   display: flex;
@@ -2223,6 +2309,27 @@ body.dark .lesson-player select {
   border-color: #596879;
 }
 
+body.dark .floating-lesson-player {
+  background: rgba(36, 48, 59, 0.97);
+  border-color: #596879;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .floating-lesson-info strong {
+  color: #ffd99b;
+}
+
+body.dark .floating-lesson-info span,
+body.dark .floating-lesson-controls label {
+  color: #c6d3df;
+}
+
+body.dark .floating-lesson-controls select {
+  background: #1f2933;
+  border-color: #596879;
+  color: #f4f7fb;
+}
+
 body.dark .lesson-tools label {
   color: #c6d3df;
 }
@@ -2510,6 +2617,42 @@ body.dark .oracle-chance-line {
     min-width: 0;
   }
 
+  body.has-floating-lesson-player {
+    padding-bottom: 210px;
+  }
+
+  .floating-lesson-player {
+    bottom: 10px;
+    padding: 9px;
+    width: calc(100% - 18px);
+  }
+
+  .floating-lesson-player.is-visible {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-lesson-controls {
+    display: grid;
+    grid-template-columns: 48px 48px minmax(112px, 1fr);
+    justify-content: stretch;
+  }
+
+  .floating-lesson-controls button {
+    min-width: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .floating-lesson-controls label {
+    grid-column: 1 / -1;
+    margin-top: 2px;
+  }
+
+  .floating-lesson-controls select {
+    flex: 1;
+    min-width: 0;
+  }
+
   .lesson-tools button,
   .lesson-tools .button-link {
     flex: 1 1 100%;
@@ -2595,6 +2738,22 @@ body.dark .oracle-chance-line {
 
   .site-nav a {
     font-size: 13px;
+  }
+
+  body.has-floating-lesson-player {
+    padding-bottom: 230px;
+  }
+
+  .floating-lesson-controls {
+    grid-template-columns: 44px 44px minmax(96px, 1fr);
+  }
+
+  .floating-lesson-controls button {
+    font-size: 14px;
+  }
+
+  .floating-lesson-controls .play-button {
+    font-size: 18px;
   }
 
   .stratagem-actions,

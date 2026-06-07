@@ -7,6 +7,14 @@ const nextSentenceButton = document.getElementById("nextSentenceButton");
 const repeatFragmentButton = document.getElementById("repeatFragmentButton");
 const stopLessonButton = document.getElementById("stopLessonButton");
 const speedSelect = document.getElementById("speedSelect");
+const textCards = document.querySelectorAll(".text-card");
+const floatingLessonPlayer = document.getElementById("floatingLessonPlayer");
+const floatingLessonTitle = document.getElementById("floatingLessonTitle");
+const floatingLessonStatus = document.getElementById("floatingLessonStatus");
+const floatingPlayLessonButton = document.getElementById("floatingPlayLessonButton");
+const floatingStopLessonButton = document.getElementById("floatingStopLessonButton");
+const floatingRepeatFragmentButton = document.getElementById("floatingRepeatFragmentButton");
+const floatingSpeedSelect = document.getElementById("floatingSpeedSelect");
 const explanationLanguageSelect = document.getElementById("explanationLanguageSelect");
 const togglePinyinButton = document.getElementById("togglePinyinButton");
 const toggleTranslationButton = document.getElementById("toggleTranslationButton");
@@ -42,6 +50,7 @@ let currentLessonSentenceIndex = 0;
 let lessonIsPlaying = false;
 let lessonIsPaused = false;
 let lessonRepeatCurrentFragment = false;
+let activeTextCard = null;
 let lessonExplanationLanguage = "cs";
 let interfaceLanguage = "cs";
 let stratagemRepeatIndex = null;
@@ -979,6 +988,11 @@ function updateLessonToggleTexts() {
     repeatFragmentButton.textContent = lessonRepeatCurrentFragment ? t("repeatOn") : t("repeatOff");
   }
 
+  if (floatingRepeatFragmentButton) {
+    floatingRepeatFragmentButton.textContent = lessonRepeatCurrentFragment ? t("repeatOn") : t("repeatOff");
+    floatingRepeatFragmentButton.classList.toggle("active", lessonRepeatCurrentFragment);
+  }
+
   if (!lessonCard || !togglePinyinButton || !toggleTranslationButton || !toggleBreakdownButton || !translationBlock || !breakdownBlock) {
     return;
   }
@@ -1391,34 +1405,369 @@ sentenceToggleButtons.forEach(function(button) {
   });
 });
 
+function getCardSentences(textCard) {
+  if (!textCard) {
+    return [];
+  }
+
+  return Array.from(textCard.querySelectorAll(".lesson-sentence"));
+}
+
+function getSentenceGlobalIndex(sentence) {
+  return Array.prototype.indexOf.call(lessonSentences, sentence);
+}
+
+function getOpenTextCards() {
+  return Array.from(textCards).filter(function(textCard) {
+    return textCard.open;
+  });
+}
+
+function getActiveTextCard() {
+  if (activeTextCard && activeTextCard.open) {
+    return activeTextCard;
+  }
+
+  activeTextCard = getOpenTextCards()[0] || null;
+  return activeTextCard;
+}
+
+function isCurrentSentenceInCard(textCard) {
+  const currentSentence = lessonSentences[currentLessonSentenceIndex];
+  return Boolean(textCard && currentSentence && textCard.contains(currentSentence));
+}
+
+function getTextCardTitle(textCard) {
+  const title = textCard ? textCard.querySelector(".text-card-title") : null;
+  const text = title ? title.textContent.trim() : "Texty";
+
+  if (text.length > 34) {
+    return text.slice(0, 31) + "...";
+  }
+
+  return text;
+}
+
+function setLessonPlayButtonText(text) {
+  if (playLessonButton) {
+    playLessonButton.textContent = text;
+  }
+
+  if (floatingPlayLessonButton) {
+    floatingPlayLessonButton.textContent = text;
+  }
+}
+
+function updateFloatingLessonPlayer() {
+  const textCard = getActiveTextCard();
+
+  if (!floatingLessonPlayer) {
+    return;
+  }
+
+  floatingLessonPlayer.classList.toggle("is-visible", Boolean(textCard));
+  document.body.classList.toggle("has-floating-lesson-player", Boolean(textCard));
+
+  if (floatingLessonTitle) {
+    floatingLessonTitle.textContent = getTextCardTitle(textCard);
+  }
+
+  if (floatingLessonStatus) {
+    if (lessonIsPlaying) {
+      floatingLessonStatus.textContent = "Přehrává se";
+    } else if (lessonIsPaused) {
+      floatingLessonStatus.textContent = "Pauza";
+    } else {
+      floatingLessonStatus.textContent = "Zastaveno";
+    }
+  }
+
+  if (floatingSpeedSelect && String(lessonSpeechRate) !== floatingSpeedSelect.value) {
+    const hasMatchingOption = Array.from(floatingSpeedSelect.options).some(function(option) {
+      return option.value === String(lessonSpeechRate);
+    });
+
+    if (hasMatchingOption) {
+      floatingSpeedSelect.value = String(lessonSpeechRate);
+    }
+  }
+
+  updateLessonToggleTexts();
+}
+
+function setActiveTextCard(textCard, shouldMoveToFirstSentence) {
+  if (!textCard) {
+    activeTextCard = null;
+    updateFloatingLessonPlayer();
+    return;
+  }
+
+  activeTextCard = textCard;
+
+  if (shouldMoveToFirstSentence || !isCurrentSentenceInCard(textCard)) {
+    const firstSentence = getCardSentences(textCard)[0];
+    const firstIndex = getSentenceGlobalIndex(firstSentence);
+
+    if (firstIndex >= 0) {
+      currentLessonSentenceIndex = firstIndex;
+    }
+  }
+
+  updateFloatingLessonPlayer();
+}
+
+function finishLessonPlayback(message) {
+  clearLessonHighlight();
+
+  if (lessonMessage) {
+    lessonMessage.textContent = message;
+  }
+
+  setLessonPlayButtonText("▶");
+  lessonIsPlaying = false;
+  lessonIsPaused = false;
+  updateFloatingLessonPlayer();
+}
+
+function stopLessonPlayback(message) {
+  lessonSpeechRunId = lessonSpeechRunId + 1;
+
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+
+  clearLessonHighlight();
+
+  if (currentTranslation) {
+    currentTranslation.textContent = "";
+  }
+
+  finishLessonPlayback(message);
+}
+
+function playActiveLesson() {
+  if (!("speechSynthesis" in window)) {
+    if (lessonMessage) {
+      lessonMessage.textContent = t("unsupportedSpeech");
+    }
+    return;
+  }
+
+  const textCard = getActiveTextCard();
+
+  if (!textCard) {
+    const firstTextCard = textCards[0];
+
+    if (firstTextCard) {
+      firstTextCard.open = true;
+      setActiveTextCard(firstTextCard, true);
+      return playActiveLesson();
+    }
+
+    return;
+  }
+
+  setActiveTextCard(textCard, !isCurrentSentenceInCard(textCard));
+
+  if (lessonIsPlaying) {
+    window.speechSynthesis.pause();
+    setLessonPlayButtonText("▶");
+    lessonIsPlaying = false;
+    lessonIsPaused = true;
+    if (lessonMessage) {
+      lessonMessage.textContent = t("pause");
+    }
+    updateFloatingLessonPlayer();
+    return;
+  }
+
+  if (lessonIsPaused) {
+    window.speechSynthesis.resume();
+    setLessonPlayButtonText("⏸");
+    lessonIsPlaying = true;
+    lessonIsPaused = false;
+    if (lessonMessage) {
+      lessonMessage.textContent = t("continues");
+    }
+    updateFloatingLessonPlayer();
+    return;
+  }
+
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+  lessonSpeechRunId = lessonSpeechRunId + 1;
+  setLessonPlayButtonText("⏸");
+  lessonIsPlaying = true;
+  lessonIsPaused = false;
+  if (lessonMessage) {
+    lessonMessage.textContent = t("playing");
+  }
+  updateFloatingLessonPlayer();
+
+  setTimeout(function() {
+    speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
+  }, 0);
+}
+
+function moveLessonSentence(direction) {
+  const textCard = getActiveTextCard();
+
+  if (!textCard) {
+    return;
+  }
+
+  const cardSentences = getCardSentences(textCard);
+  const currentSentence = lessonSentences[currentLessonSentenceIndex];
+  let localIndex = cardSentences.indexOf(currentSentence);
+  const shouldContinue = lessonIsPlaying;
+
+  if (localIndex < 0) {
+    localIndex = 0;
+  } else {
+    localIndex = Math.max(0, Math.min(cardSentences.length - 1, localIndex + direction));
+  }
+
+  const targetIndex = getSentenceGlobalIndex(cardSentences[localIndex]);
+
+  lessonSpeechRunId = lessonSpeechRunId + 1;
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+  setLessonPlayButtonText("▶");
+  lessonIsPlaying = false;
+  lessonIsPaused = false;
+  currentLessonSentenceIndex = targetIndex;
+  showLessonSentence(currentLessonSentenceIndex);
+
+  if (lessonMessage) {
+    lessonMessage.textContent = direction < 0 ? t("previousFragment") : t("nextFragment");
+  }
+
+  updateFloatingLessonPlayer();
+
+  if (shouldContinue) {
+    setLessonPlayButtonText("⏸");
+    lessonIsPlaying = true;
+    lessonIsPaused = false;
+    if (lessonMessage) {
+      lessonMessage.textContent = t("playing");
+    }
+    updateFloatingLessonPlayer();
+    setTimeout(function() {
+      speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
+    }, 0);
+  }
+}
+
+function toggleLessonRepeat() {
+  lessonRepeatCurrentFragment = !lessonRepeatCurrentFragment;
+
+  if (lessonRepeatCurrentFragment) {
+    if (repeatFragmentButton) {
+      repeatFragmentButton.classList.add("active");
+    }
+    if (lessonMessage) {
+      lessonMessage.textContent = t("repeatOnMessage");
+    }
+  } else {
+    if (repeatFragmentButton) {
+      repeatFragmentButton.classList.remove("active");
+    }
+    if (lessonMessage) {
+      lessonMessage.textContent = t("repeatOffMessage");
+    }
+  }
+
+  updateLessonToggleTexts();
+  updateFloatingLessonPlayer();
+}
+
+function updateLessonSpeed(value) {
+  lessonSpeechRate = Number(value);
+
+  if (speedSelect && speedSelect.value !== String(value)) {
+    speedSelect.value = String(value);
+  }
+
+  if (floatingSpeedSelect && floatingSpeedSelect.value !== String(value)) {
+    const hasMatchingOption = Array.from(floatingSpeedSelect.options).some(function(option) {
+      return option.value === String(value);
+    });
+
+    if (hasMatchingOption) {
+      floatingSpeedSelect.value = String(value);
+    }
+  }
+
+  if (lessonMessage) {
+    lessonMessage.textContent = t("speedChanged");
+  }
+
+  updateFloatingLessonPlayer();
+}
+
+textCards.forEach(function(textCard) {
+  textCard.addEventListener("toggle", function() {
+    if (textCard.open) {
+      setActiveTextCard(textCard, !isCurrentSentenceInCard(textCard));
+      return;
+    }
+
+    if (activeTextCard === textCard) {
+      if (lessonIsPlaying || lessonIsPaused) {
+        stopLessonPlayback(t("stopped"));
+      }
+
+      setActiveTextCard(getOpenTextCards()[0] || null, true);
+    } else {
+      updateFloatingLessonPlayer();
+    }
+  });
+});
+
+setActiveTextCard(getOpenTextCards()[0] || null, false);
+
 function speakLessonSentence(index, runId) {
   if (runId !== lessonSpeechRunId) {
     return;
   }
 
-  if (index >= lessonSentences.length) {
-    clearLessonHighlight();
-    lessonMessage.textContent = t("finished");
-    playLessonButton.textContent = "▶";
-    lessonIsPlaying = false;
-    lessonIsPaused = false;
+  const textCard = getActiveTextCard();
+  const cardSentences = getCardSentences(textCard);
+  const currentSentence = lessonSentences[index];
+  const localIndex = cardSentences.indexOf(currentSentence);
+
+  if (!textCard || localIndex < 0) {
+    finishLessonPlayback(t("finished"));
     return;
   }
 
   clearLessonHighlight();
 
-  const currentSentence = lessonSentences[index];
   const utterance = new SpeechSynthesisUtterance(currentSentence.dataset.text);
 
   currentLessonSentenceIndex = index;
   showLessonSentence(index);
+  updateFloatingLessonPlayer();
   utterance.lang = "zh-CN";
   utterance.rate = lessonSpeechRate;
   utterance.onend = function() {
+    if (runId !== lessonSpeechRunId) {
+      return;
+    }
+
     if (lessonRepeatCurrentFragment) {
       speakLessonSentence(index, runId);
     } else {
-      speakLessonSentence(index + 1, runId);
+      const nextSentence = cardSentences[localIndex + 1];
+
+      if (!nextSentence) {
+        finishLessonPlayback(t("finished"));
+        return;
+      }
+
+      speakLessonSentence(getSentenceGlobalIndex(nextSentence), runId);
     }
   };
 
@@ -1428,125 +1777,84 @@ function speakLessonSentence(index, runId) {
 if (lessonCard) {
   lessonSentences.forEach(function(sentence, index) {
     sentence.addEventListener("click", function() {
+      const shouldContinuePlaying = lessonIsPlaying;
+
+      setActiveTextCard(sentence.closest(".text-card"), false);
       lessonSpeechRunId = lessonSpeechRunId + 1;
-      window.speechSynthesis.cancel();
-      playLessonButton.textContent = "▶";
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      setLessonPlayButtonText("▶");
       lessonIsPlaying = false;
       lessonIsPaused = false;
       currentLessonSentenceIndex = index;
       showLessonSentence(currentLessonSentenceIndex);
-      lessonMessage.textContent = t("fragmentSelected");
+      if (lessonMessage) {
+        lessonMessage.textContent = t("fragmentSelected");
+      }
+      updateFloatingLessonPlayer();
+
+      if (shouldContinuePlaying) {
+        setLessonPlayButtonText("⏸");
+        lessonIsPlaying = true;
+        lessonIsPaused = false;
+        if (lessonMessage) {
+          lessonMessage.textContent = t("playing");
+        }
+        updateFloatingLessonPlayer();
+        setTimeout(function() {
+          speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
+        }, 0);
+      }
     });
   });
 }
 
 if (playLessonButton) {
   playLessonButton.addEventListener("click", function() {
-    if (!("speechSynthesis" in window)) {
-      lessonMessage.textContent = t("unsupportedSpeech");
-      return;
-    }
+    playActiveLesson();
+  });
+}
 
-    if (lessonIsPlaying) {
-      window.speechSynthesis.pause();
-      playLessonButton.textContent = "▶";
-      lessonIsPlaying = false;
-      lessonIsPaused = true;
-      lessonMessage.textContent = t("pause");
-      return;
-    }
-
-    if (lessonIsPaused) {
-      window.speechSynthesis.resume();
-      playLessonButton.textContent = "⏸";
-      lessonIsPlaying = true;
-      lessonIsPaused = false;
-      lessonMessage.textContent = t("continues");
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    lessonSpeechRunId = lessonSpeechRunId + 1;
-    playLessonButton.textContent = "⏸";
-    lessonIsPlaying = true;
-    lessonIsPaused = false;
-    lessonMessage.textContent = t("playing");
-
-    setTimeout(function() {
-      speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
-    }, 0);
+if (floatingPlayLessonButton) {
+  floatingPlayLessonButton.addEventListener("click", function() {
+    playActiveLesson();
   });
 }
 
 if (previousSentenceButton) {
   previousSentenceButton.addEventListener("click", function() {
-  const shouldContinue = lessonIsPlaying;
-
-  lessonSpeechRunId = lessonSpeechRunId + 1;
-  window.speechSynthesis.cancel();
-  playLessonButton.textContent = "▶";
-  lessonIsPlaying = false;
-  lessonIsPaused = false;
-  currentLessonSentenceIndex = Math.max(0, currentLessonSentenceIndex - 1);
-  showLessonSentence(currentLessonSentenceIndex);
-  lessonMessage.textContent = t("previousFragment");
-
-  if (shouldContinue) {
-    playLessonButton.textContent = "⏸";
-    lessonIsPlaying = true;
-    lessonIsPaused = false;
-    lessonMessage.textContent = t("playing");
-    setTimeout(function() {
-      speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
-    }, 0);
-  }
+  moveLessonSentence(-1);
   });
 }
 
 if (nextSentenceButton) {
   nextSentenceButton.addEventListener("click", function() {
-  const shouldContinue = lessonIsPlaying;
-
-  lessonSpeechRunId = lessonSpeechRunId + 1;
-  window.speechSynthesis.cancel();
-  playLessonButton.textContent = "▶";
-  lessonIsPlaying = false;
-  lessonIsPaused = false;
-  currentLessonSentenceIndex = Math.min(lessonSentences.length - 1, currentLessonSentenceIndex + 1);
-  showLessonSentence(currentLessonSentenceIndex);
-  lessonMessage.textContent = t("nextFragment");
-
-  if (shouldContinue) {
-    playLessonButton.textContent = "⏸";
-    lessonIsPlaying = true;
-    lessonIsPaused = false;
-    lessonMessage.textContent = t("playing");
-    setTimeout(function() {
-      speakLessonSentence(currentLessonSentenceIndex, lessonSpeechRunId);
-    }, 0);
-  }
+  moveLessonSentence(1);
   });
 }
 
 if (stopLessonButton) {
   stopLessonButton.addEventListener("click", function() {
-  lessonSpeechRunId = lessonSpeechRunId + 1;
-  window.speechSynthesis.cancel();
-  clearLessonHighlight();
-  if (currentTranslation) {
-    currentTranslation.textContent = "";
-  }
-  playLessonButton.textContent = "▶";
-  lessonIsPlaying = false;
-  lessonIsPaused = false;
-  lessonMessage.textContent = t("stopped");
+  stopLessonPlayback(t("stopped"));
+  });
+}
+
+if (floatingStopLessonButton) {
+  floatingStopLessonButton.addEventListener("click", function() {
+    stopLessonPlayback(t("stopped"));
   });
 }
 
 if (speedSelect) {
   speedSelect.addEventListener("change", function() {
-    lessonSpeechRate = Number(speedSelect.value);
-    lessonMessage.textContent = t("speedChanged");
+    updateLessonSpeed(speedSelect.value);
+  });
+}
+
+if (floatingSpeedSelect) {
+  floatingSpeedSelect.addEventListener("change", function() {
+    updateLessonSpeed(floatingSpeedSelect.value);
   });
 }
 
@@ -1567,17 +1875,13 @@ if (explanationLanguageSelect) {
 
 if (repeatFragmentButton) {
   repeatFragmentButton.addEventListener("click", function() {
-  lessonRepeatCurrentFragment = !lessonRepeatCurrentFragment;
+  toggleLessonRepeat();
+  });
+}
 
-  if (lessonRepeatCurrentFragment) {
-    repeatFragmentButton.classList.add("active");
-    lessonMessage.textContent = t("repeatOnMessage");
-  } else {
-    repeatFragmentButton.classList.remove("active");
-    lessonMessage.textContent = t("repeatOffMessage");
-  }
-
-  updateLessonToggleTexts();
+if (floatingRepeatFragmentButton) {
+  floatingRepeatFragmentButton.addEventListener("click", function() {
+    toggleLessonRepeat();
   });
 }
 
