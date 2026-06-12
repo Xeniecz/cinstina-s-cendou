@@ -29,6 +29,7 @@ Veřejný mini web pro Čendu Zheng: čínština od základů — pinyin, znaky,
 - V textu `Pět slov: 汇报，意外，只不过，无疑，皆` byly opraveny české překlady — odstraněny čínské znaky z překladů a zajištěno, že každý český překlad je přirozená česká věta bez čínských znaků.
 - Rozbory v textu `Pět slov: 汇报，意外，只不过，无疑，皆` byly přepracované na konkrétní slovní rozbor po slovech a smysluplných částech vět.
 - Do oddílu `Texty` byl přidán nový opakovací text `Sedm slov: 勇气，消费者，绕，减，摆脱，列表，来源` s pinyinem, českým překladem a konkrétním rozborem každé věty.
+- Text `U zubaře: co může říkat lékař` byl rozšířen o běžné fráze k vrtání, plombě, hlubokému kazu, nervu, korunce a implantátu.
 - Stránka `Texty` byla upravena tak, aby pinyin, český překlad a rozbor byly přímo pod jednotlivými větami.
 - Na stránce `Texty` byl přidán plovoucí mini přehrávač pro pohodlné ovládání poslechu při scrollování dlouhých textů.
 - Přehrávač v oddílu `Texty` si při přechodu na jinou větu pamatuje stav Play, Repeat i rychlost, takže běžící poslech pokračuje nově vybranou větou.
