@@ -21,6 +21,7 @@ Veřejný mini web pro Čendu Zheng: čínština od základů — pinyin, znaky,
 - Opakované footery a slogany už nekladou jídlo a humor jako hlavní téma webu; Taiwan39 Food zůstává jako kontext Čendy a sociálních sítí.
 - Horní navigace vede na `Úvod`, `Texty`, `Slova`, `Základy`, `Moudrost`, `Kniha proměn` a `Čenda`.
 - Veřejný oddíl `Fráze` byl přejmenován na `Texty`; soubor může dál zůstat `fraze.html`.
+- Starý veřejný název `Fráze` byl v navigaci na všech veřejných stránkách sjednocen na `Texty`.
 - Stránka `fraze.html` slouží pro čínské texty k poslechu, opakování a zapamatování slov v kontextu.
 - Do oddílu `Texty` byl přidán nový opakovací text `Čtyři slova: 依靠，相比，商量，应用` se slovníčkem, pinyinem, českým překladem a větami použitelnými pro poslech.
 - Stránka `Texty` byla přepracována na rozbalovací karty: dlouhé texty nejsou při načtení automaticky otevřené a návštěvník nejdřív vidí jen přehled textů.
